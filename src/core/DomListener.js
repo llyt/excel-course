@@ -8,6 +8,7 @@ export class DomListener {
     this.$root = $root
     this.listeners = listeners
   }
+
   initDOMListeners() {
     this.listeners.forEach((listener) => {
       const method = getMethodName(listener)
@@ -18,11 +19,12 @@ export class DomListener {
         )
       }
       // That's a decision for different this[method] links
-      this[method]= this[method].bind(this)
+      this[method] = this[method].bind(this)
       // Same that addEventListener
       this.$root.on(listener, this[method])
     })
   }
+
   removeDOMListeners() {
     this.listeners.forEach((listener) => {
       const method = getMethodName(listener)
